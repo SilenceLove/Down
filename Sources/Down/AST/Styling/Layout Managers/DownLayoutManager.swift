@@ -71,8 +71,10 @@ public class DownLayoutManager: NSLayoutManager {
 
         let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
         
+        let maxWidth = textContainers.first?.size.width
         textStorage.enumerateAttributes(for: .blockBackgroundColor,
                                         in: characterRange) { (attr: BlockBackgroundColorAttribute, blockRange) in
+            let inset = attr.inset
             let cornerInset = attr.cornerInset
             let cornerRadius = attr.cornerRadius
             context.setFillColor(attr.color.cgColor)
@@ -90,8 +92,8 @@ public class DownLayoutManager: NSLayoutManager {
                     lineGlyphRange.overlapsEnd(of: $0)
                 }
 
-                let minX = lineUsedRect.minX + container.lineFragmentPadding - cornerInset.x
-                let maxX = lineRect.maxX - cornerInset.x
+                let minX = lineUsedRect.minX + container.lineFragmentPadding - cornerInset.x - inset.x
+                let maxX = (maxWidth ?? lineRect.maxX) - inset.x
                 let minY = isLineStartOfBlock ? lineUsedRect.minY - cornerInset.y : lineRect.minY
                 let maxY = isLineEndOfBlock ? lineUsedRect.maxY + cornerInset.y : lineUsedRect.maxY
                 let blockRect = CGRect(minX: minX, minY: minY, maxX: maxX, maxY: maxY).translated(by: origin)
