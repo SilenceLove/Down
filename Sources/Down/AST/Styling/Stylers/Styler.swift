@@ -186,4 +186,12 @@ public protocol Styler {
 
     func style(image str: NSMutableAttributedString, title: String?, url: String?)
 
+    
+    func highlightCode(_ code: String) -> NSMutableAttributedString
+}
+
+public extension Styler {
+    func highlightCode(_ code: String) -> NSMutableAttributedString {
+        .init(string: code)
+    }
 }

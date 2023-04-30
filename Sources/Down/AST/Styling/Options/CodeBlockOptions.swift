@@ -21,15 +21,23 @@ import AppKit
 public struct CodeBlockOptions {
 
     // MARK: - Properties
-
-    public var containerInset: CGFloat
+    
+    public var inset: CGPoint
+    
+    public var containerInset: CGPoint
+    public var cornerRadius: CGFloat
 
     // MARK: - Life cycle
 
-    public init(containerInset: CGFloat = 8) {
+    public init(
+        inset: CGPoint = .init(x: 0, y: 12),
+        containerInset: CGPoint = .init(x: 12, y: 12),
+        cornerRadius: CGFloat = 8
+    ) {
+        self.inset = inset
         self.containerInset = containerInset
+        self.cornerRadius = cornerRadius
     }
 
 }
-
 #endif

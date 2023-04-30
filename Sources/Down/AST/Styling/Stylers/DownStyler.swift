@@ -62,7 +62,7 @@ open class DownStyler: Styler {
 
     open func style(blockQuote str: NSMutableAttributedString, nestDepth: Int) {
         let stripeAttribute = QuoteStripeAttribute(level: nestDepth + 1,
-                                                   color: colors.quoteStripe,
+                                                   color: colors.codeQuoteStripe,
                                                    options: quoteStripeOptions)
 
         str.updateExistingAttributes(for: .paragraphStyle) { (style: NSParagraphStyle) in
@@ -146,15 +146,16 @@ open class DownStyler: Styler {
     open func style(text str: NSMutableAttributedString) {
         str.setAttributes([
             .font: fonts.body,
-            .foregroundColor: colors.body])
+            .foregroundColor: colors.body,
+            .paragraphStyle: paragraphStyles.body])
     }
 
     open func style(softBreak str: NSMutableAttributedString) {
-
+        
     }
 
     open func style(lineBreak str: NSMutableAttributedString) {
-
+        
     }
 
     open func style(code str: NSMutableAttributedString) {
@@ -162,7 +163,7 @@ open class DownStyler: Styler {
     }
 
     open func style(htmlInline str: NSMutableAttributedString) {
-        styleGenericInlineCode(in: str)
+        styleGenericHtmlInline(in: str)
     }
 
     open func style(customInline str: NSMutableAttributedString) {
@@ -190,24 +191,45 @@ open class DownStyler: Styler {
         guard let url = url else { return }
         styleGenericLink(in: str, url: url)
     }
+    
+    open func highlightCode(_ code: String) -> NSMutableAttributedString {
+        .init(string: code)
+    }
 
     // MARK: - Common Styling
-
-    private func styleGenericCodeBlock(in str: NSMutableAttributedString) {
+    
+    public var codeBlockAttributes: [NSAttributedString.Key: Any] {
         let blockBackgroundAttribute = BlockBackgroundColorAttribute(
             color: colors.codeBlockBackground,
-            inset: codeBlockOptions.containerInset)
+            inset: codeBlockOptions.inset,
+            cornerInset: codeBlockOptions.containerInset,
+            cornerRadius: codeBlockOptions.cornerRadius)
 
-        let adjustedParagraphStyle = paragraphStyles.code.inset(by: blockBackgroundAttribute.inset)
-
-        str.setAttributes([
+        let adjustedParagraphStyle = paragraphStyles.code.inset(by: blockBackgroundAttribute.cornerInset).inset(by: blockBackgroundAttribute.inset)
+        
+        return [
             .font: fonts.code,
             .foregroundColor: colors.code,
             .paragraphStyle: adjustedParagraphStyle,
-            .blockBackgroundColor: blockBackgroundAttribute])
+            .blockBackgroundColor: blockBackgroundAttribute]
     }
 
-    private func styleGenericInlineCode(in str: NSMutableAttributedString) {
+    open func styleGenericCodeBlock(in str: NSMutableAttributedString) {
+        
+        str.setAttributes(codeBlockAttributes)
+    }
+    
+    public var codeAttributes: [NSAttributedString.Key: Any] {
+        [
+            .font: fonts.code,
+            .foregroundColor: colors.code,
+            .backgroundColor: colors.codeBlockBackground]
+    }
+    open func styleGenericInlineCode(in str: NSMutableAttributedString) {
+        str.setAttributes(codeAttributes)
+    }
+    
+    private func styleGenericHtmlInline(in str: NSMutableAttributedString) {
         str.setAttributes([
             .font: fonts.code,
             .foregroundColor: colors.code])
@@ -283,16 +305,15 @@ private extension NSParagraphStyle {
         return result
     }
 
-    func inset(by amount: CGFloat) -> NSParagraphStyle {
+    func inset(by amount: CGPoint) -> NSParagraphStyle {
         guard let result = mutableCopy() as? NSMutableParagraphStyle else { return self }
-        result.paragraphSpacingBefore += amount
-        result.paragraphSpacing += amount
-        result.firstLineHeadIndent += amount
-        result.headIndent += amount
-        result.tailIndent = -amount
+        result.paragraphSpacingBefore += amount.y
+        result.paragraphSpacing += amount.y
+        result.firstLineHeadIndent += amount.x
+        result.headIndent += amount.x
+        result.tailIndent = -amount.y
         return result
     }
-
 }
 
 private extension NSAttributedString {

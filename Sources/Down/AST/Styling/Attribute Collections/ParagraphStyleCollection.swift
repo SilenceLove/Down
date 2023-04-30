@@ -48,16 +48,17 @@ public struct StaticParagraphStyleCollection: ParagraphStyleCollection {
 
     public init() {
         let headingStyle = NSMutableParagraphStyle()
-        headingStyle.paragraphSpacing = 8
+        headingStyle.paragraphSpacing = 0
 
         let bodyStyle = NSMutableParagraphStyle()
-        bodyStyle.paragraphSpacingBefore = 8
-        bodyStyle.paragraphSpacing = 8
-        bodyStyle.lineSpacing = 8
+        bodyStyle.paragraphSpacingBefore = 4
+        bodyStyle.paragraphSpacing = 0
+        bodyStyle.lineSpacing = 4
 
         let codeStyle = NSMutableParagraphStyle()
-        codeStyle.paragraphSpacingBefore = 8
-        codeStyle.paragraphSpacing = 8
+        codeStyle.paragraphSpacingBefore = 0
+        codeStyle.paragraphSpacing = 0
+        codeStyle.lineSpacing = 4
 
         heading1 = headingStyle
         heading2 = headingStyle

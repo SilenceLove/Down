@@ -30,9 +30,9 @@ public struct ListItemOptions {
 
     // MARK: - Life cycle
 
-    public init(maxPrefixDigits: UInt = 2,
+    public init(maxPrefixDigits: UInt = 0,
                 spacingAfterPrefix: CGFloat = 8,
-                spacingAbove: CGFloat = 4,
+                spacingAbove: CGFloat = 6,
                 spacingBelow: CGFloat = 8,
                 alignment: NSTextAlignment = .natural) {
 

@@ -18,13 +18,14 @@ import AppKit
 
 #endif
 
-struct BlockBackgroundColorAttribute {
+public struct BlockBackgroundColorAttribute {
 
     // MARK: - Properties
 
     var color: DownColor
-    var inset: CGFloat
-
+    var inset: CGPoint
+    var cornerInset: CGPoint
+    var cornerRadius: CGFloat
 }
 
 extension NSAttributedString.Key {

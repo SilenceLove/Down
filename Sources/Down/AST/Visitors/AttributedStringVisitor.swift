@@ -89,10 +89,11 @@ extension AttributedStringVisitor: Visitor {
 
     public func visit(codeBlock node: CodeBlock) -> NSMutableAttributedString {
         guard let literal = node.literal else { return .empty }
-        let result = literal.replacingNewlinesWithLineSeparators().attributed
-        if node.hasSuccessor { result.append(.paragraphSeparator) }
-        styler.style(codeBlock: result, fenceInfo: node.fenceInfo)
-        return result
+        let result = literal.replacingNewlinesWithLineSeparators()
+        let highlightResult = styler.highlightCode(result)
+        if node.hasSuccessor { highlightResult.append(.paragraphSeparator) }
+        styler.style(codeBlock: highlightResult, fenceInfo: node.fenceInfo)
+        return highlightResult
     }
 
     public func visit(htmlBlock node: HtmlBlock) -> NSMutableAttributedString {
@@ -148,9 +149,10 @@ extension AttributedStringVisitor: Visitor {
     }
 
     public func visit(code node: Code) -> NSMutableAttributedString {
-        guard let result = node.literal?.attributed else { return .empty }
-        styler.style(code: result)
-        return result
+        guard let result = node.literal else { return .empty }
+        let highlightResult = styler.highlightCode(result)
+        styler.style(code: highlightResult)
+        return highlightResult
     }
 
     public func visit(htmlInline node: HtmlInline) -> NSMutableAttributedString {

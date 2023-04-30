@@ -57,9 +57,9 @@ public struct StaticFontCollection: FontCollection {
         heading4: DownFont = .boldSystemFont(ofSize: 20),
         heading5: DownFont = .boldSystemFont(ofSize: 20),
         heading6: DownFont = .boldSystemFont(ofSize: 20),
-        body: DownFont = .systemFont(ofSize: 17),
-        code: DownFont = DownFont(name: "menlo", size: 17) ?? .systemFont(ofSize: 17),
-        listItemPrefix: DownFont = DownFont.monospacedDigitSystemFont(ofSize: 17, weight: .regular)
+        body: DownFont = .systemFont(ofSize: 15),
+        code: DownFont = DownFont(name: "menlo", size: 14) ?? .systemFont(ofSize: 14, weight: .regular),
+        listItemPrefix: DownFont = DownFont.monospacedDigitSystemFont(ofSize: 15, weight: .regular)
     ) {
         self.heading1 = heading1
         self.heading2 = heading2

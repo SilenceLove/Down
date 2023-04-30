@@ -22,7 +22,7 @@ public struct DownStylerConfiguration {
     public var quoteStripeOptions: QuoteStripeOptions
     public var thematicBreakOptions: ThematicBreakOptions
     public var codeBlockOptions: CodeBlockOptions
-
+    
     // MARK: - Life cycle
 
     public init(fonts: FontCollection = StaticFontCollection(),
@@ -41,7 +41,7 @@ public struct DownStylerConfiguration {
         self.thematicBreakOptions = thematicBreakOptions
         self.codeBlockOptions = codeBlockOptions
     }
-
+    
 }
 
 #endif

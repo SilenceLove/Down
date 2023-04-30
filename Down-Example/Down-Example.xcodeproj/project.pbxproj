@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,7 @@
 		8A07D7DD1F085EC6004D7141 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A07D7DB1F085EC6004D7141 /* LaunchScreen.storyboard */; };
 		D4591E9C226D293F00EBD476 /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; };
 		D4591E9D226D293F00EBD476 /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D699B547561A53E0F693A6B9 /* Pods_Down_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0D7157E07F7B4665D3080E /* Pods_Down_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,13 +53,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 8AFAEAFB1E6E32E900E09B68;
 			remoteInfo = DownTests;
-		};
-		D4C77E06240EEB64004675B3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D49980AF1FA560F8004EE42E /* Down.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EEBA153A2344845500B54ECB;
-			remoteInfo = DownSnapshotTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -96,6 +90,9 @@
 		14090A542185411A00503C06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14090A5E2185443800503C06 /* macOS Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "macOS Demo.entitlements"; sourceTree = "<group>"; };
 		14954EA421A7DCA3001933C4 /* README-sample.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "README-sample.md"; sourceTree = "<group>"; };
+		2F0D7157E07F7B4665D3080E /* Pods_Down_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Down_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		57453F74D0AC4A7CD7B72CDD /* Pods-Down-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Down-Example.debug.xcconfig"; path = "Target Support Files/Pods-Down-Example/Pods-Down-Example.debug.xcconfig"; sourceTree = "<group>"; };
+		63A27D44738CC37B307F8040 /* Pods-Down-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Down-Example.release.xcconfig"; path = "Target Support Files/Pods-Down-Example/Pods-Down-Example.release.xcconfig"; sourceTree = "<group>"; };
 		8A07D7CF1F085EC6004D7141 /* Down-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Down-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A07D7D21F085EC6004D7141 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A07D7D41F085EC6004D7141 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +117,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1466417E218D2A18009627F9 /* Down.framework in Frameworks */,
+				D699B547561A53E0F693A6B9 /* Pods_Down_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +140,7 @@
 		14664175218D264A009627F9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2F0D7157E07F7B4665D3080E /* Pods_Down_Example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -163,6 +162,7 @@
 				14954EA321A7DCA3001933C4 /* Shared */,
 				14664175218D264A009627F9 /* Frameworks */,
 				8A07D7D01F085EC6004D7141 /* Products */,
+				9886DF6361E93D7CA6AEE521 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -188,12 +188,21 @@
 			path = "Down-Example";
 			sourceTree = "<group>";
 		};
+		9886DF6361E93D7CA6AEE521 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				57453F74D0AC4A7CD7B72CDD /* Pods-Down-Example.debug.xcconfig */,
+				63A27D44738CC37B307F8040 /* Pods-Down-Example.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D49980B01FA560F8004EE42E /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				D49980B51FA560F8004EE42E /* Down.framework */,
 				D49980B71FA560F8004EE42E /* DownTests.xctest */,
-				D4C77E07240EEB64004675B3 /* DownSnapshotTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,10 +233,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8A07D7E11F085EC6004D7141 /* Build configuration list for PBXNativeTarget "Down-Example" */;
 			buildPhases = (
+				8F5B6BEFA4D5BDFE878F80DF /* [CP] Check Pods Manifest.lock */,
 				8A07D7CB1F085EC6004D7141 /* Sources */,
 				8A07D7CC1F085EC6004D7141 /* Frameworks */,
 				8A07D7CD1F085EC6004D7141 /* Resources */,
 				14664182218D2A18009627F9 /* Embed Frameworks */,
+				20FE884A5A57C1A994241BA4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -245,8 +256,9 @@
 		8A07D7C71F085EC6004D7141 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = Down;
 				TargetAttributes = {
 					14090A482185411800503C06 = {
@@ -306,13 +318,6 @@
 			remoteRef = D49980B61FA560F8004EE42E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		D4C77E07240EEB64004675B3 /* DownSnapshotTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = DownSnapshotTests.xctest;
-			remoteRef = D4C77E06240EEB64004675B3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -338,6 +343,46 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		20FE884A5A57C1A994241BA4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Down-Example/Pods-Down-Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F5B6BEFA4D5BDFE878F80DF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Down-Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		14090A452185411800503C06 /* Sources */ = {
@@ -413,12 +458,16 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7V68668DJN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "macOS Demo/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.downMarkdown.macOS-Demo";
@@ -440,12 +489,16 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7V68668DJN;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "macOS Demo/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.downMarkdown.macOS-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -480,6 +533,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -504,7 +558,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -541,6 +595,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -559,10 +614,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -571,6 +627,7 @@
 		};
 		8A07D7E21F085EC6004D7141 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57453F74D0AC4A7CD7B72CDD /* Pods-Down-Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -580,8 +637,11 @@
 					"$(PROJECT_DIR)/Down-Example",
 				);
 				INFOPLIST_FILE = "Down-Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.downMarkdown.Down-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -591,6 +651,7 @@
 		};
 		8A07D7E31F085EC6004D7141 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63A27D44738CC37B307F8040 /* Pods-Down-Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -600,8 +661,11 @@
 					"$(PROJECT_DIR)/Down-Example",
 				);
 				INFOPLIST_FILE = "Down-Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.downMarkdown.Down-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";

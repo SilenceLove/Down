@@ -31,6 +31,8 @@ open class DownTextView: TextView {
             try? render()
         }
     }
+    
+    open var options: DownOptions
 
     #if canImport(UIKit)
 
@@ -54,13 +56,14 @@ open class DownTextView: TextView {
 
     // MARK: - Life cycle
 
-    public convenience init(frame: CGRect, styler: Styler = DownStyler()) {
-        self.init(frame: frame, styler: styler, layoutManager: DownLayoutManager())
+    public convenience init(frame: CGRect, options: DownOptions = .default, styler: Styler = DownStyler()) {
+        self.init(frame: frame, options: options, styler: styler, layoutManager: DownLayoutManager())
     }
 
-    public init(frame: CGRect, styler: Styler, layoutManager: NSLayoutManager) {
+    public init(frame: CGRect, options: DownOptions = .default, styler: Styler, layoutManager: NSLayoutManager) {
         self.styler = styler
-
+        self.options = options
+        
         let textStorage = NSTextStorage()
         let textContainer = NSTextContainer()
 
@@ -83,13 +86,13 @@ open class DownTextView: TextView {
     open func render() throws {
         #if canImport(UIKit)
         let down = Down(markdownString: text)
-        let markdown = try down.toAttributedString(styler: styler)
+        let markdown = try down.toAttributedString(options, styler: styler)
         attributedText = markdown
 
         #elseif canImport(AppKit)
         guard let textStorage = textStorage else { return }
         let down = Down(markdownString: string)
-        let markdown = try down.toAttributedString(styler: styler)
+        let markdown = try down.toAttributedString(options, styler: styler)
         textStorage.replaceCharacters(in: textStorage.wholeRange, with: markdown)
 
         #endif

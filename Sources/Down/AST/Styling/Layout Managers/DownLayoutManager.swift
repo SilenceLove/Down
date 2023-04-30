@@ -70,19 +70,17 @@ public class DownLayoutManager: NSLayoutManager {
         guard let textStorage = textStorage else { return }
 
         let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
-
+        
         textStorage.enumerateAttributes(for: .blockBackgroundColor,
                                         in: characterRange) { (attr: BlockBackgroundColorAttribute, blockRange) in
-            let inset = attr.inset
-
+            let cornerInset = attr.cornerInset
+            let cornerRadius = attr.cornerRadius
             context.setFillColor(attr.color.cgColor)
-
             let allBlockColorRanges = glyphRanges(for: .blockBackgroundColor,
                                                   in: textStorage,
                                                   inCharacterRange: blockRange)
-
             let glyphRange = self.glyphRange(forCharacterRange: blockRange, actualCharacterRange: nil)
-
+            
             enumerateLineFragments(forGlyphRange: glyphRange) { lineRect, lineUsedRect, container, lineGlyphRange, _ in
                 let isLineStartOfBlock = allBlockColorRanges.contains {
                     lineGlyphRange.overlapsStart(of: $0)
@@ -92,13 +90,28 @@ public class DownLayoutManager: NSLayoutManager {
                     lineGlyphRange.overlapsEnd(of: $0)
                 }
 
-                let minX = lineUsedRect.minX + container.lineFragmentPadding - inset
-                let maxX = lineRect.maxX
-                let minY = isLineStartOfBlock ? lineUsedRect.minY - inset : lineRect.minY
-                let maxY = isLineEndOfBlock ? lineUsedRect.maxY + inset : lineUsedRect.maxY
+                let minX = lineUsedRect.minX + container.lineFragmentPadding - cornerInset.x
+                let maxX = lineRect.maxX - cornerInset.x
+                let minY = isLineStartOfBlock ? lineUsedRect.minY - cornerInset.y : lineRect.minY
+                let maxY = isLineEndOfBlock ? lineUsedRect.maxY + cornerInset.y : lineUsedRect.maxY
                 let blockRect = CGRect(minX: minX, minY: minY, maxX: maxX, maxY: maxY).translated(by: origin)
-
-                context.fill(blockRect)
+                
+                let path: UIBezierPath
+                if isLineStartOfBlock {
+                    if isLineEndOfBlock {
+                        path = UIBezierPath(roundedRect: blockRect, byRoundingCorners: .allCorners, cornerRadii: .init(width: cornerRadius, height: cornerRadius))
+                    }else {
+                        path = UIBezierPath(roundedRect: blockRect, byRoundingCorners: [.topLeft, .topRight], cornerRadii: .init(width: cornerRadius, height: cornerRadius))
+                    }
+                }else if isLineEndOfBlock {
+                    path = UIBezierPath(roundedRect: blockRect, byRoundingCorners: [.bottomLeft, .bottomRight], cornerRadii: .init(width: cornerRadius, height: cornerRadius))
+                }else {
+                    path = UIBezierPath(rect: blockRect)
+                }
+                context.addPath(path.cgPath)
+                context.closePath()
+                context.fillPath()
+                context.drawPath(using: .fill)
             }
         }
     }

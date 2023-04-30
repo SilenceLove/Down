@@ -30,9 +30,11 @@ public protocol ColorCollection {
     var heading6: DownColor { get }
     var body: DownColor { get }
     var code: DownColor { get }
+    var codeBackground: DownColor { get }
     var link: DownColor { get }
     var quote: DownColor { get }
     var quoteStripe: DownColor { get }
+    var codeQuoteStripe: DownColor { get }
     var thematicBreak: DownColor { get }
     var listItemPrefix: DownColor { get }
     var codeBlockBackground: DownColor { get }
@@ -51,9 +53,11 @@ public struct StaticColorCollection: ColorCollection {
     public var heading6: DownColor
     public var body: DownColor
     public var code: DownColor
+    public var codeBackground: DownColor
     public var link: DownColor
     public var quote: DownColor
     public var quoteStripe: DownColor
+    public var codeQuoteStripe: DownColor
     public var thematicBreak: DownColor
     public var listItemPrefix: DownColor
     public var codeBlockBackground: DownColor
@@ -68,13 +72,15 @@ public struct StaticColorCollection: ColorCollection {
         heading5: DownColor = .black,
         heading6: DownColor = .black,
         body: DownColor = .black,
-        code: DownColor = .black,
+        code: DownColor = .darkText,
+        codeBackground: DownColor = .init(red: 245 / 255, green: 245 / 255, blue: 249 / 255, alpha: 1),
         link: DownColor = .blue,
-        quote: DownColor = .darkGray,
-        quoteStripe: DownColor = .darkGray,
+        quote: DownColor = .black,
+        quoteStripe: DownColor = .black,
+        codeQuoteStripe: DownColor = .clear,
         thematicBreak: DownColor = .init(white: 0.9, alpha: 1),
         listItemPrefix: DownColor = .lightGray,
-        codeBlockBackground: DownColor = .init(red: 0.96, green: 0.97, blue: 0.98, alpha: 1)
+        codeBlockBackground: DownColor = .init(red: 245 / 255, green: 245 / 255, blue: 249 / 255, alpha: 1)
     ) {
         self.heading1 = heading1
         self.heading2 = heading2
@@ -84,9 +90,11 @@ public struct StaticColorCollection: ColorCollection {
         self.heading6 = heading6
         self.body = body
         self.code = code
+        self.codeBackground = codeBackground
         self.link = link
         self.quote = quote
         self.quoteStripe = quoteStripe
+        self.codeQuoteStripe = codeQuoteStripe
         self.thematicBreak = thematicBreak
         self.listItemPrefix = listItemPrefix
         self.codeBlockBackground = codeBlockBackground
