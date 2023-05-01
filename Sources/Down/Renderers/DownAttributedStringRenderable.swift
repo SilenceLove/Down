@@ -65,7 +65,11 @@ extension DownAttributedStringRenderable {
     public func toAttributedString(_ options: DownOptions = .default, styler: Styler) throws -> NSAttributedString {
         let document = try self.toDocument(options)
         let visitor = AttributedStringVisitor(styler: styler, options: options)
-        return document.accept(visitor)
+        let result = document.accept(visitor)
+        if document.children.last?.cmarkNode.type == CMARK_NODE_CODE_BLOCK {
+            result.append(.init(string: "\u{2028}"))
+        }
+        return result
     }
 
 }
